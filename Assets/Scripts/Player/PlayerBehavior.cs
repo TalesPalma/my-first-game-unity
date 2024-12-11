@@ -1,20 +1,15 @@
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class PlayerBehavior : MonoBehaviour
 {
 
-    private InputManager inputManager;
-
-    void Start()
-    {
-        inputManager = new InputManager();
-    }
-
+    [SerializeField] private float moveSpeed = 5;
 
     void Update()
     {
-        float movimentDirection = inputManager.Moviment;
-        transform.Translate(movimentDirection * Time.deltaTime, 0, 0);
+        float movimentDirection = GameManager.Instance.InputManager.Movement * Time.deltaTime * moveSpeed;
+        transform.Translate(movimentDirection, 0, 0);
     }
 
 }
